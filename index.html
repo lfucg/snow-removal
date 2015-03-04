@@ -20,6 +20,7 @@
       height:100%;
     }
 
+
     .controls {
       margin-top: 16px;
       border: 1px solid transparent;
@@ -41,15 +42,6 @@
       text-overflow: ellipsis;
       width: 400px;
     }
-    @media all and (max-width: 699px) {
-      #pac-address {
-        width: 90%;
-        margin-left: 5%;
-        padding-top: 50px;
-        height: 75px;
-      }
-    }
-
     #pac-address:focus {
       border-color: #4d90fe;
     }
@@ -76,6 +68,18 @@
     #legend .swatch {
       margin: 5px 5px 0 0;
     }
+    @media all and (max-width: 699px) {
+      #pac-address {
+        width: 90%;
+        margin-left: 5%;
+        padding-top: 50px;
+        height: 75px;
+      }
+      #legend div {
+        font-size: 2em;
+      }
+    }
+
   </style>
 
   <script>
@@ -135,12 +139,9 @@
         var priority = feature.getProperty('snow');
         return {
           strokeColor: priorities[priority].color,
-          strokeWeight: 2
+          strokeWeight: map.zoom > 15 ? 4 : 2
         };
     });
-
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
-      document.getElementById('legend'));
 
     if(navigator.geolocation) {
         browserSupportFlag = true;
@@ -215,7 +216,7 @@
 <body>
 
   <div id="mapcanvas"></div>
-  <div id="legend"><h3>Legend</h3></div>
+  <div id="legend"></div>
   <input class='controls' id='pac-address' placeholder='Enter a location' type='text' />
 </body>
 
