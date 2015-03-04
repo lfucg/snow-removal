@@ -173,7 +173,7 @@
         navigator.geolocation.getCurrentPosition(function(position) {
           initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
           map.setCenter(initialLocation);
-          map.setZoom(17);
+          map.setZoom(16);
         }, function() {
           handleNoGeolocation(browserSupportFlag);
         });
