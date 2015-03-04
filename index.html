@@ -62,6 +62,12 @@
     #legend img {
       vertical-align: middle;
     }
+    #legend div {
+      margin: 5px 5px 0 0;
+    }
+    #legend .swatch {
+      margin: 5px 5px 0 0;
+    }
   </style>
 
   <script>
@@ -105,21 +111,22 @@
       map.data.addGeoJson(geoJsonObject);
     });
 
+    var priorities = {
+      1: { color: 'red', label: 'foo' },
+      2: { color: 'blue', label: 'bar' },
+      3: { color: 'green', label: 'baz' },
+      4: { color: 'yellow', label: '' },
+      5: { color: '#996633', label: '' },
+      6: { color: '#663300', label: '' },
+      7: { color: '#FF66FF', label: '' },
+      8: { color: '#663399', label: '' }
+    };
+
     // Set the stroke width, and fill color for each polygon
     map.data.setStyle(function(feature) {
         var priority = feature.getProperty('snow');
-        colors = {
-          1: 'red',
-          2: 'blue',
-          3: 'green',
-          4: 'yellow',
-          5: '#996633',
-          6: '#663300',
-          7: '#FF66FF',
-          8: '#663399'
-        }
         return {
-          strokeColor: colors[priority],
+          strokeColor: priorities[priority].color,
           strokeWeight: 2
         };
     });
@@ -144,9 +151,14 @@
      var autocomplete = new google.maps.places.Autocomplete(input);
 
       map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('legend'));
 
-
+      var legend = document.getElementById('legend');
+      var keys = Object.keys(priorities);
+      for (var i = 0; i < keys.length; i++) {
+        var priority = priorities[keys[i]];
+        $(legend).append('<div><span class="swatch" style="background-color:' + priority.color + '">&nbsp;&nbsp;&nbsp;</span>' + priority.label + '</div>');
+      }
+      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 
   var marker = new google.maps.Marker({
     map: map,
