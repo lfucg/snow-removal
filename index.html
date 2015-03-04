@@ -47,11 +47,15 @@
     });
 
     // Set the stroke width, and fill color for each polygon
-    var featureStyle = {
-      strokeColor: 'green',
-      strokeWeight: 1
-    }
-    map.data.setStyle(featureStyle);
+    map.data.setStyle(function(feature) {
+        var priority = feature.getProperty('snow');
+        var color = priority < 2 ? 'red' : 'blue';
+        debugger
+        return {
+          strokeColor: color,
+          strokeWeight: 1
+        };
+    });
   });//end document ready
 
 
