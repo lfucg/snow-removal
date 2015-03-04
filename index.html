@@ -164,7 +164,7 @@
         var priority = feature.getProperty('snow');
         return {
           strokeColor: priorities[priority].color,
-          strokeWeight: map.zoom > 15 ? 4 : 2
+          strokeWeight: map.zoom > 14 ? 4 : 2
         };
     });
 
@@ -173,7 +173,7 @@
         navigator.geolocation.getCurrentPosition(function(position) {
           initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
           map.setCenter(initialLocation);
-          map.setZoom(16);
+          map.setZoom(15);
         }, function() {
           handleNoGeolocation(browserSupportFlag);
         });
