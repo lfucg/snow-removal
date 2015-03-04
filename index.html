@@ -51,10 +51,10 @@
 
     #legend {
       font-family: Arial, sans-serif;
-      background: #fff;
-      padding: 10px;
+      border: 2px solid gray;
+      background: #F4F4F4;
+      padding: 20px;
       margin: 10px;
-      border: 3px solid #000;
     }
     #legend h3 {
       margin-top: 0;
@@ -112,14 +112,14 @@
     });
 
     var priorities = {
-      1: { color: 'red', label: 'foo' },
-      2: { color: 'blue', label: 'bar' },
-      3: { color: 'green', label: 'baz' },
-      4: { color: 'yellow', label: '' },
-      5: { color: '#996633', label: '' },
-      6: { color: '#663300', label: '' },
-      7: { color: '#FF66FF', label: '' },
-      8: { color: '#663399', label: '' }
+      1: { color: 'rgb(219,0,0)', label: 'First priority' },
+      2: { color: 'rgb(38,115,0)', label: 'Second priority' },
+      3: { color: 'rgb(0,4,255)', label: 'Third priority' },
+      4: { color: 'rgb(0,255,255)', label: 'Fourth priority' },
+      5: { color: 'rgb(179,125,79)', label: 'Managed by county' },
+      6: { color: 'rgb(178,110,212)', label: 'Managed by state' },
+      7: { color: 'rgb(252,160,0)', label: 'Managed by state' },
+      8: { color: 'rgb(248,0,252)', label: 'Managed by state' }
     };
 
     // Set the stroke width, and fill color for each polygon
@@ -156,7 +156,7 @@
       var keys = Object.keys(priorities);
       for (var i = 0; i < keys.length; i++) {
         var priority = priorities[keys[i]];
-        $(legend).append('<div><span class="swatch" style="background-color:' + priority.color + '">&nbsp;&nbsp;&nbsp;</span>' + priority.label + '</div>');
+        $(legend).append('<div><span class="swatch" style="background-color:' + priority.color + '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + priority.label + '</div>');
       }
       map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 
