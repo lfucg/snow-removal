@@ -40,7 +40,7 @@
     }
 
     #geolocation {
-      padding: 0.5em 0.5em 0.5em 0;
+      padding: 0 0.5em 0.5em 0;
       font-size: 1.2em;
     }
 
@@ -168,16 +168,17 @@
         };
     });
 
-    if(navigator.geolocation) {
-        browserSupportFlag = true;
+    if (navigator.geolocation) {
+      $('#geolocation').show().click(function(e) {
+        e.preventDefault();
         navigator.geolocation.getCurrentPosition(function(position) {
-          initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+          var initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
           map.setCenter(initialLocation);
           map.setZoom(15);
         }, function() {
-          handleNoGeolocation(browserSupportFlag);
         });
-      }
+      });
+    }
 
      var input = /** @type {HTMLInputElement} */(
           document.getElementById('pac-address'));
@@ -250,14 +251,14 @@
 <body>
 
 
-   <!--[if lt IE 9]>
-            <p class="alert alert-danger">You are using an older browser that is not currently supported. <a href="http://whatbrowser.org/">Upgrade your browser today</a> to fully use the site.</p>
-        <![endif]-->
+  <!--[if lt IE 9]>
+    <p class="alert alert-danger">You are using an older browser that is not currently supported. Please see a <a href="http://www.lexingtonky.gov/Modules/ShowDocument.aspx?documentid=25692">different version of the map</a></p>
+  <![endif]-->
   <div id="mapcanvas"></div>
   <div id="legend"></div>
   <div id="top-controls">
     <div><h1 id="greeting">Snow removal priorities for Lexington, KY</h1></div>
-    <!-- <div id="geolocation"><a href="#">(Find me)</a></div> -->
+    <div id="geolocation" style="display:none">(<a href="#">Find me</a>)</div>
     <div><input class='controls' id='pac-address' placeholder='Enter a location' type='text' /></div>
   </div>
 </body>
