@@ -28,9 +28,23 @@
       height:100%;
     }
 
+    #top-controls {
+      padding: 10px;
+      background-color: rgba(244, 244, 244, 0.88);
+      margin-top: 10px;
+      border: 2px solid gray;
+    }
+
+    h1 {
+      margin: 0 0 0.5em 0;
+    }
+
+    #geolocation {
+      padding: 0.5em 0.5em 0.5em 0;
+      font-size: 1.2em;
+    }
 
     .controls {
-      margin-top: 16px;
       border: 1px solid transparent;
       border-radius: 2px 0 0 2px;
       box-sizing: border-box;
@@ -41,11 +55,9 @@
     }
     #pac-address {
       background-color: #fff;
-      border: 2px solid gray;
       font-family: Roboto;
       font-size: 15px;
       font-weight: 300;
-      margin-left: 12px;
       padding: 0 11px 0 13px;
       text-overflow: ellipsis;
       width: 400px;
@@ -75,16 +87,22 @@
     #legend .swatch {
       margin: 5px 5px 0 0;
     }
-    @media all and (max-width: 699px) {
-      #pac-address {
-        width: 90%;
-        margin-left: 5%;
-        padding-top: 50px;
-        height: 75px;
-      }
-      #legend div {
+    @media all and (max-width: 700px) {
+      /* #top-controls { */
+      /*   width: 90%; */
+      /*   margin-left: 2.5%; */
+      /* } */
+      /* #pac-address { */
+      /*   padding-top: 50px; */
+      /*   height: 50px; */
+      /*   width: 100% */
+      /* } */
+      #geolocation {
         font-size: 2em;
       }
+      /* #legend div { */
+      /*   font-size: 2em; */
+      /* } */
     }
 
   </style>
@@ -166,7 +184,7 @@
 
      var autocomplete = new google.maps.places.Autocomplete(input);
 
-      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+     map.controls[google.maps.ControlPosition.TOP_LEFT].push(document.getElementById('top-controls'));
 
       var legend = document.getElementById('legend');
       var keys = Object.keys(priorities);
@@ -237,7 +255,11 @@
         <![endif]-->
   <div id="mapcanvas"></div>
   <div id="legend"></div>
-  <input class='controls' id='pac-address' placeholder='Enter a location' type='text' />
+  <div id="top-controls">
+    <div><h1 id="greeting">Snow removal priorities for Lexington, KY</h1></div>
+    <!-- <div id="geolocation"><a href="#">(Find me)</a></div> -->
+    <div><input class='controls' id='pac-address' placeholder='Enter a location' type='text' /></div>
+  </div>
 </body>
 
 
