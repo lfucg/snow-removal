@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML5</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=650, user-scalable=yes">
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+
+  <style>
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    #mapcanvas{
+
+      height:100%;
+    }
+
+  </style>
+
+  <script>
+
+
+   var geoJsonObject;
+   var thejson;
+
+   $(document).ready(function(){
+    var mapOptions = {
+      zoom: 11,
+      center: new google.maps.LatLng(38.03,-84.475),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map=new google.maps.Map($('#mapcanvas')[0], mapOptions);
+
+    //county.json is a topojson file
+
+    $.getJSON("snow-plan-specified.topo.json", function(data){
+      geoJsonObject = topojson.feature(data, data.objects['snow-priority-specified'])
+      map.data.addGeoJson(geoJsonObject);
+    });
+
+    // Set the stroke width, and fill color for each polygon
+    var featureStyle = {
+      strokeColor: 'green',
+      strokeWeight: 1
+    }
+    map.data.setStyle(featureStyle);
+  });//end document ready
+
+
+ </script>
+
+</head>
+<body>
+  <div id="mapcanvas">
+  </div>
+</body>
+
+
+</html>
