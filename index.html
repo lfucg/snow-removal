@@ -14,6 +14,14 @@
     html, body {
       height: 100%;
       margin: 0;
+      font-family: Roboto;
+    }
+
+    .alert {
+      padding: 30px;
+      margin: 0;
+      border: 2px solid red;
+      background: rgb(207, 91, 91);
     }
 
     #mapcanvas{
@@ -50,7 +58,6 @@
     }
 
     #legend {
-      font-family: Arial, sans-serif;
       border: 2px solid gray;
       background: #F4F4F4;
       padding: 20px;
@@ -215,6 +222,10 @@
 </head>
 <body>
 
+
+   <!--[if lt IE 9]>
+            <p class="alert alert-danger">You are using an older browser that is not currently supported. <a href="http://whatbrowser.org/">Upgrade your browser today</a> to fully use the site.</p>
+        <![endif]-->
   <div id="mapcanvas"></div>
   <div id="legend"></div>
   <input class='controls' id='pac-address' placeholder='Enter a location' type='text' />
