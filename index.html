@@ -5,8 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=650, user-scalable=yes">
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-  </script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
   <script src="http://d3js.org/topojson.v1.min.js"></script>
 
@@ -79,6 +78,11 @@
 
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
       document.getElementById('legend'));
+
+    map.controls[google.maps.ControlPosition.LEFT_TOP].push(
+      document.getElementById('search_address'));
+
+    var autocomplete = new google.maps.places.Autocomplete(document.getElementById('search_address'));
   });//end document ready
 
 
@@ -86,6 +90,9 @@
 
 </head>
 <body>
+
+
+  <input class='form-control' id='search_address' placeholder='Enter an address or an intersection' type='text' />
 
   <div id="mapcanvas"></div>
   <div id="legend"><h3>Legend</h3></div>
