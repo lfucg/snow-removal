@@ -21,7 +21,19 @@
 
       height:100%;
     }
-
+    #legend {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding: 10px;
+      margin: 10px;
+      border: 3px solid #000;
+    }
+    #legend h3 {
+      margin-top: 0;
+    }
+    #legend img {
+      vertical-align: middle;
+    }
   </style>
 
   <script>
@@ -49,13 +61,24 @@
     // Set the stroke width, and fill color for each polygon
     map.data.setStyle(function(feature) {
         var priority = feature.getProperty('snow');
-        var color = priority < 2 ? 'red' : 'blue';
-        debugger
+        colors = {
+          1: 'red',
+          2: 'blue',
+          3: 'green',
+          4: 'yellow',
+          5: '#996633',
+          6: '#663300',
+          7: '#FF66FF',
+          8: '#663399'
+        }
         return {
-          strokeColor: color,
-          strokeWeight: 1
+          strokeColor: colors[priority],
+          strokeWeight: 2
         };
     });
+
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+      document.getElementById('legend'));
   });//end document ready
 
 
@@ -63,8 +86,9 @@
 
 </head>
 <body>
-  <div id="mapcanvas">
-  </div>
+
+  <div id="mapcanvas"></div>
+  <div id="legend"><h3>Legend</h3></div>
 </body>
 
 
