@@ -37,6 +37,7 @@
 
     h1 {
       margin: 0 0 0.5em 0;
+      font-size: 1.7em;
     }
 
     #geolocation {
@@ -105,6 +106,11 @@
       /* } */
     }
 
+    #remove {
+      float: right;
+      color: gray;
+      font-size: 1.3em;
+    }
   </style>
 
   <script>
@@ -243,7 +249,13 @@
       ].join(' ');
     }
   });
-    });//end document ready
+
+  $('#remove').click(function(e) {
+    e.preventDefault();
+    $('#top-controls').hide();
+  });
+
+  });//end document ready
 
 
  </script>
@@ -268,7 +280,10 @@
   <div id="mapcanvas"></div>
   <div id="legend"></div>
   <div id="top-controls">
-    <div><h1 id="greeting">Snow removal priorities for Lexington, KY</h1></div>
+    <div>
+      <a href="#" id="remove">X</a>
+      <h1 id="greeting">Snow removal priorities for Lexington, KY</h1>
+    </div>
     <div id="geolocation" style="display:none">(<a href="#">Find me</a>)</div>
     <div><input class='controls' id='pac-address' placeholder='Enter a location' type='text' /></div>
   </div>
