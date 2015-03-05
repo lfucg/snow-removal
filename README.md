@@ -1,5 +1,7 @@
 # Web map to show snow removal priority streets in Lexington, KY
 
+## To create map from shapefile
+
 ### Filter the features
 
 * Open shapefile in QGIS
@@ -16,6 +18,8 @@
 ```
 topojson -o snow-plan-specified.topo.json --simplify-proportion .5 --properties snow snow-priority-specified.geojson
 ```
+
+### Contributors
 
 Big thanks to Chris Doerge and the GIS team at LFUCG for providing the data and helping to understand it.
 
