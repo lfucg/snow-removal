@@ -139,13 +139,17 @@
         ]
     };
 
-    map=new google.maps.Map($('#mapcanvas')[0], mapOptions);
-
-    //county.json is a topojson file
+    var map = new google.maps.Map($('#mapcanvas')[0], mapOptions);
 
     $.getJSON("snow-plan-specified.topo.json", function(data){
-      geoJsonObject = topojson.feature(data, data.objects['snow-priority-specified'])
-      map.data.addGeoJson(geoJsonObject);
+      try {
+        var geoJsonObject = topojson.feature(data, data.objects['snow-priority-specified'])
+        map.data.addGeoJson(geoJsonObject);
+      } catch (e) {
+        $.getJSON("snow-priority-specified.geojson", function(data){
+          map.data.addGeoJson(data);
+        });
+      }
     });
 
     var priorities = {
@@ -252,7 +256,8 @@
 
 
   <!--[if lt IE 9]>
-    <p class="alert alert-danger">You are using an older browser that is not currently supported. Please see a <a href="http://www.lexingtonky.gov/Modules/ShowDocument.aspx?documentid=25692">different version of the map</a></p>
+    <p class="alert alert-danger">Since you are using an older browser you may experience issues viewing the map. If so, please try a <a href="http://www.lexingtonky.gov/Modules/ShowDocument.aspx?documentid=25692">different version</a>.</p>
+    <script type="text/javascript" src="ie8-polyfill.js" /></script>
   <![endif]-->
   <div id="mapcanvas"></div>
   <div id="legend"></div>
